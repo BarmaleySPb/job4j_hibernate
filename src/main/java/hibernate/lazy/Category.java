@@ -1,4 +1,4 @@
-package hibernate.models;
+package hibernate.lazy;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -6,19 +6,20 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "car")
-public class Car {
+@Table(name = "categories")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Model> models = new ArrayList<>();
 
-    public static Car of(String name) {
-        Car car = new Car();
-        car.name = name;
-        return car;
+    private String name;
+    @OneToMany(mappedBy = "category")
+    private List<Task> tasks = new ArrayList<>();
+
+    public static Category of(String name) {
+        Category category = new Category();
+        category.name = name;
+        return category;
     }
 
     public int getId() {
@@ -37,16 +38,12 @@ public class Car {
         this.name = name;
     }
 
-    public List<Model> getModels() {
-        return models;
+    public List<Task> getTasks() {
+        return tasks;
     }
 
-    public void setModels(List<Model> models) {
-        this.models = models;
-    }
-
-    public void addModel(Model model) {
-        this.models.add(model);
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override
@@ -57,12 +54,20 @@ public class Car {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Car car = (Car) o;
-        return id == car.id;
+        Category category = (Category) o;
+        return id == category.id;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Category{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + '}';
     }
 }
