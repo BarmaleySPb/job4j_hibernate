@@ -24,5 +24,7 @@
         <mapping class="hibernate.lazy.Category" />
         <mapping class="hibernate.models.Type" />
         <mapping class="hibernate.models.Vehicle" />
+        <mapping class="hibernate.hql.Student" />
+        <mapping class="hibernate.hql.Candidate" />
     </session-factory>
 </hibernate-configuration>
