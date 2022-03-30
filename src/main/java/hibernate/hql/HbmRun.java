@@ -9,6 +9,8 @@ import org.hibernate.query.Query;
 
 public class HbmRun {
     public static void main(String[] args) {
+        Student rsl = null;
+
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
         try {
@@ -96,6 +98,14 @@ public class HbmRun {
                     .setParameter("fId", 1)
                     .executeUpdate();
 */
+
+            rsl = session.createQuery(
+                    "select distinct st from Student st "
+                            + "join fetch st.account a "
+                            + "join fetch a.secondBooks b "
+                            + "where st.id = :sId", Student.class
+            ).setParameter("sId", 1).uniqueResult();
+            System.out.println(rsl);
 
 
             session.getTransaction().commit();

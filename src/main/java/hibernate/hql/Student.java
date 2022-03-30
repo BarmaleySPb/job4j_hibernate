@@ -8,12 +8,11 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String name;
-
     private int age;
-
     private String city;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Account account;
 
     public static Student of(String name, int age, String city) {
         Student student = new Student();

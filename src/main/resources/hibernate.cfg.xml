@@ -26,5 +26,9 @@
         <mapping class="hibernate.models.Vehicle" />
         <mapping class="hibernate.hql.Student" />
         <mapping class="hibernate.hql.Candidate" />
+        <mapping class="hibernate.hql.Account" />
+        <mapping class="hibernate.hql.SecondBook" />
+        <mapping class="hibernate.hql.Vacancy" />
+        <mapping class="hibernate.hql.DbVacancy" />
     </session-factory>
 </hibernate-configuration>
